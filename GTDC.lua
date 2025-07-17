@@ -79,6 +79,17 @@ local TropicalToggle = Tab:CreateToggle({
 				local args2 = {"dif_impossible"}
 				game:GetService("ReplicatedStorage"):WaitForChild("RemoteFunctions"):WaitForChild("PlaceDifficultyVote"):InvokeServer(unpack(args2))
 
+				local placeArgs = {
+					"unit_farmer_npc",
+					{
+						Valid = true,
+						Rotation = 180,
+						CF = CFrame.new(-66.24742126464844, -28.983240127563477, 125.21807861328125, -1, 0, -8.742277657347586e-08, 0, 1, 0, 8.742277657347586e-08, 0, -1),
+						Position = Vector3.new(-66.24742126464844, -28.983240127563477, 125.21807861328125)
+					}
+				}
+				game:GetService("ReplicatedStorage"):WaitForChild("RemoteFunctions"):WaitForChild("PlaceUnit"):InvokeServer(unpack(placeArgs))
+
 				local args3 = {1}
 				game:GetService("ReplicatedStorage"):WaitForChild("RemoteFunctions"):WaitForChild("UpgradeUnit"):InvokeServer(unpack(args3))
 
@@ -86,6 +97,12 @@ local TropicalToggle = Tab:CreateToggle({
 				game:GetService("ReplicatedStorage"):WaitForChild("RemoteFunctions"):WaitForChild("ChangeTickSpeed"):InvokeServer(unpack(args4))
 
 				game:GetService("ReplicatedStorage"):WaitForChild("RemoteFunctions"):WaitForChild("RestartGame"):InvokeServer()
+
+				-- Float character a few feet above placement location
+				local hrp = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+				if hrp then
+					hrp.CFrame = CFrame.new(-66.24742126464844, -28.983240127563477 + 5, 125.21807861328125)
+				end
 
 				wait(5)
 			end

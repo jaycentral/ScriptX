@@ -1,8 +1,8 @@
 local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
 
 local Window = Rayfield:CreateWindow({
-	Name = "Garden Tower Defense Central",
-	LoadingTitle = "Join our discord!",
+	Name = "Autofarm GUI",
+	LoadingTitle = "Loading...",
 	LoadingSubtitle = "by ScriptX",
 	ConfigurationSaving = {
 		Enabled = false
@@ -16,51 +16,32 @@ local Label = Tab:CreateButton({
 	Callback = function() end
 })
 
-local Toggle = Tab:CreateToggle({
-	Name = "Start Autofarm Loop",
+local TropicalToggle = Tab:CreateToggle({
+	Name = "Tropical Farm 🌾🌴",
 	CurrentValue = false,
-	Flag = "AutoFarmToggle",
+	Flag = "TropicalFarmToggle",
 	Callback = function(state)
 		if state then
-			getgenv().loopfarm = true
-			while getgenv().loopfarm do
-				local args = {"dif_easy"}
-				game:GetService("ReplicatedStorage"):WaitForChild("RemoteFunctions"):WaitForChild("PlaceDifficultyVote"):InvokeServer(unpack(args))
+			getgenv().tropicalfarm = true
+			while getgenv().tropicalfarm do
+				local args1 = {"dif_impossible"}
+				game:GetService("ReplicatedStorage"):WaitForChild("RemoteFunctions"):WaitForChild("PlaceDifficultyVote"):InvokeServer(unpack(args1))
 
-				local args1 = {
-					"unit_tomato_plant",
-					{
-						Valid = true,
-						Rotation = 180,
-						CF = CFrame.new(-332.16180419921875, 62.845054626464844, -106.08424377441406, -1, 0, -8.742277657347586e-08, 0, 1, 0, 8.742277657347586e-08, 0, -1),
-						Position = Vector3.new(-332.16180419921875, 62.845054626464844, -106.08424377441406)
-					}
-				}
-				game:GetService("ReplicatedStorage"):WaitForChild("RemoteFunctions"):WaitForChild("PlaceUnit"):InvokeServer(unpack(args1))
+				local args2 = {"dif_impossible"}
+				game:GetService("ReplicatedStorage"):WaitForChild("RemoteFunctions"):WaitForChild("PlaceDifficultyVote"):InvokeServer(unpack(args2))
 
-				local args2 = {
-					"unit_pineapple",
-					{
-						Valid = true,
-						Rotation = 180,
-						CF = CFrame.new(-332.2293701171875, 62.845054626464844, -113.29612731933594, -1, 0, -8.742277657347586e-08, 0, 1, 0, 8.742277657347586e-08, 0, -1),
-						Position = Vector3.new(-332.2293701171875, 62.845054626464844, -113.29612731933594)
-					}
-				}
-				game:GetService("ReplicatedStorage"):WaitForChild("RemoteFunctions"):WaitForChild("PlaceUnit"):InvokeServer(unpack(args2))
-
-				local args3 = {116}
+				local args3 = {1}
 				game:GetService("ReplicatedStorage"):WaitForChild("RemoteFunctions"):WaitForChild("UpgradeUnit"):InvokeServer(unpack(args3))
 
-				local args4 = {111}
-				game:GetService("ReplicatedStorage"):WaitForChild("RemoteFunctions"):WaitForChild("UpgradeUnit"):InvokeServer(unpack(args4))
+				local args4 = {2}
+				game:GetService("ReplicatedStorage"):WaitForChild("RemoteFunctions"):WaitForChild("ChangeTickSpeed"):InvokeServer(unpack(args4))
 
 				game:GetService("ReplicatedStorage"):WaitForChild("RemoteFunctions"):WaitForChild("RestartGame"):InvokeServer()
 
 				wait(5)
 			end
 		else
-			getgenv().loopfarm = false
+			getgenv().tropicalfarm = false
 		end
 	end,
 })
